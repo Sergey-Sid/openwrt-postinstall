@@ -117,7 +117,7 @@ NFQWS_PORTS_UDP: 443,444-65535,50000-50100
 
 Ниже NFQWS_OPT жмем "Изменить" и удаляем полностью весь стандартный конфиг, ставим следующее:
 
---filter-tcp=80 <HOSTLIST>
+--filter-tcp=80 ˂HOSTLIST˃
 --dpi-desync=split2
 --dpi-desync-split-seqovl=1
 --dpi-desync-split-pos=2
@@ -137,13 +137,13 @@ NFQWS_PORTS_UDP: 443,444-65535,50000-50100
 --dpi-desync-repeats=11
 --dpi-desync-fake-quic=/opt/zapret/files/fake/quic_initial_www_google_com.bin
 --new
---filter-udp=443 <HOSTLIST_NOAUTO>
+--filter-udp=443 ˂HOSTLIST_NOAUTO˃
 --dpi-desync=syndata,split2
 --dpi-desync-fake-syndata=/opt/zapret/files/fake/tls_clienthello_iana_org.bin
 --wssize 1:6
 --dpi-desync-split-pos=1
 --new
---filter-tcp=80,443 <HOSTLIST>
+--filter-tcp=80,443 ˂HOSTLIST˃
 --dpi-desync=split2
 --dpi-desync-split-seqovl=1
 --dpi-desync-split-pos=2
@@ -151,9 +151,10 @@ NFQWS_PORTS_UDP: 443,444-65535,50000-50100
 --new
 --filter-udp=50000-50100
 --filter-l7=discord,stun
---dpi-desync=syndata,split2
---dpi-desync-fake-syndata=/opt/zapret/files/fake/tls_clienthello_iana_org.bin
---wssize 1:6
+--dpi-desync=fake,tamper
+--dpi-desync-any-protocol
+--dpi-desync-cutoff=d5
+--dpi-desync-repeats=11
 --new
 --filter-udp=443
 --dpi-desync=syndata,split2
@@ -288,6 +289,25 @@ steamcommunity.com
 twitch.tv
 nnmclub.to
 rutracker.org
+cdn-telegram.org
+comments.app
+contest.com
+fragment.com
+graph.org
+quiz.directory
+t.me
+tdesktop.com
+telega.one
+telegra.ph
+telegram-cdn.org
+telegram.dog
+telegram.me
+telegram.org
+telegram.space
+telesco.pe
+tg.dev
+tx.me
+usercontent.dev
 
 # Файл User excluded hostname entries:
 
